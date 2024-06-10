@@ -1,0 +1,42 @@
+.left {
+  width: 160px;
+  height: 100vh;
+  background-color: black;
+  color: #fff;
+  float: left;
+}
+.right {
+  width: calc(100% -160px);
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: #111111;
+}
+.left svg {
+  height: 50px;
+  margin-top: 30px;
+}
+.header {
+  width: 100%;
+  height: 50px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.header a {
+  text-decoration: none;
+  color: white;
+  margin: 0 10px;
+  font-weight: bolder;
+  color: #7cb9e8;
+}
+.left a {
+  text-decoration: none;
+  font-weight: bolder;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  cursor: pointer;
+  color: #7cb9e8;
+}

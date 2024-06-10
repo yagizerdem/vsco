@@ -1,0 +1,124 @@
+.center {
+  width: 300px;
+  height: 450px;
+  border-radius: 5px;
+}
+.background {
+  width: 100%;
+  height: 100vh;
+  background: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-radius: 5px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+.card h2 {
+  text-align: center;
+  display: block;
+}
+.card hr {
+  width: 80%;
+  display: block;
+  margin: 10px auto;
+}
+.card input {
+  display: block;
+  margin: 20px auto;
+  border: none;
+  outline: none;
+  padding: 8px 5px;
+  width: 250px;
+}
+.card input ~ label {
+  display: block;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+}
+.front {
+  width: 100%;
+  height: 100%;
+  background: #343333;
+  border-radius: 5px;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all 0.3s linear;
+}
+.back {
+  width: 100%;
+  height: 100%;
+  background: #343333;
+  border-radius: 5px;
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: all 0.3s linear;
+}
+.frame {
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  display: block;
+  margin: 10px auto;
+  position: relative;
+}
+.frame ~ button,
+.back button {
+  width: 180px;
+  height: 30px;
+  display: block;
+  margin: 5px auto;
+  border: none;
+  outline: None;
+  border-radius: 3px;
+  background-color: rgb(33, 32, 32);
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+}
+.delete {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: -10px;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  padding: 8px;
+  cursor: pointer;
+}
+.goBack {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: -10px;
+  border-radius: 50%;
+  z-index: 3;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+}
