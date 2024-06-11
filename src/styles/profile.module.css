@@ -1,2 +1,51 @@
+.uploadpicbtn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  position: fixed;
+  right: 0;
+  margin-right: 30px;
+  margin-top: 20px;
+  border-radius: 50%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgb(80, 77, 77);
+}
+.uploadpicbtn svg {
+  fill: white !important;
+}
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.profile {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 5px solid black;
+}
+.username {
+  color: white;
+  font-weight: bolder;
+  font-size: 40px;
+  margin-top: 20px;
+}
+.followmetadata {
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 10px;
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+}
+.followmetadata span {
+  margin: 0 20px 0 20px;
+  cursor: pointer;
 }

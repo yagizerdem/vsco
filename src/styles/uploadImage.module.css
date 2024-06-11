@@ -1,0 +1,74 @@
+.container {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+}
+.frame {
+  width: 180px;
+  height: 180px;
+  border: 1px solid black;
+  margin: 100px auto 20px auto;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.frame + label {
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+  display: block;
+  margin-top: 30px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.container input[type="text"] {
+  width: 250px;
+  padding: 8px 5px;
+}
+.container input[type="checkbox"] {
+  display: block;
+  margin: 20px auto;
+}
+.container input[type="checkbox"]::after {
+  display: block;
+  content: "do you allow user comments ... ";
+  margin-left: 20px;
+  color: white;
+  width: 250px;
+}
+.submit {
+  display: block;
+  border: none;
+  outline: none;
+  margin: 20px auto;
+  width: 180px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgb(39, 38, 38);
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.delete {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  margin: -20px;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}

@@ -10,6 +10,14 @@ const schema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  following: {
+    type: Array,
+    default: [],
+  },
+  followers: {
+    type: Array,
+    default: [],
+  },
 });
 schema.pre("save", async function (next) {
   const hash = await bcrypt.hash(this.password, 10);

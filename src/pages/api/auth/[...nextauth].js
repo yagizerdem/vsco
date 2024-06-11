@@ -6,8 +6,10 @@ import bcrypt from "bcrypt";
 const { v4: uuidv4 } = require("uuid");
 
 export const authOptions = {
+  secret: process.env.AUTH_SECRET,
   providers: [
     CredentialsProvider({
+      name: "Credentials",
       async authorize(credentials, req) {
         const db = new Database();
         try {
@@ -37,16 +39,13 @@ export const authOptions = {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
     updateAge: 24 * 60 * 60, // 24 hours
-    generateSessionToken: () => {
-      return uuidv4();
-    },
   },
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
         token.userData = {
           email: user.email,
-          firstName: user.firsname,
+          firstName: user.firstname,
           lastName: user.lastname,
           id: user._id,
         };

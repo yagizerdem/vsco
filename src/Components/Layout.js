@@ -2,11 +2,14 @@ import Link from "next/link";
 import { Fragment } from "react";
 import styles from "../styles/layout.module.css";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import notify from "@/util/notify";
 
 export default function Layout({ children }) {
   const session = useSession();
   const isLoggedIn = true && session.data;
   const userid = session?.data?.user?.id;
+  const router = useRouter();
   return (
     <Fragment>
       <div className={styles.left}>
@@ -51,6 +54,7 @@ export default function Layout({ children }) {
           <br />
           <br />
           <br />
+          <Link href={"/"}>Home</Link>
           <Link href={`/profile/${userid}`}>Profile</Link>
           <Link href={"/Studio"}>Studio</Link>
         </div>
@@ -60,7 +64,14 @@ export default function Layout({ children }) {
           <Link href={"/Search"}>Search Users</Link>
           {!isLoggedIn && <Link href={"/Register"}>Register</Link>}
           {isLoggedIn && (
-            <a href="#" onClick={() => signOut()}>
+            <a
+              href="#"
+              onClick={() => {
+                signOut();
+                router.push("/");
+                notify("sign out");
+              }}
+            >
               sign Out
             </a>
           )}

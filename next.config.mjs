@@ -5,6 +5,7 @@ const nextConfig = withTranspileModules({
   reactStrictMode: true,
   env: {
     DBCONNECTIONSTRING: "mongodb://localhost:27017/",
+    AUTH_SECRET: "Ij14WxgNNUp2dyp5",
   },
 });
 
