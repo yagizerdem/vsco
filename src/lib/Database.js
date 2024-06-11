@@ -41,9 +41,8 @@ class Database {
     await newUser.save();
     return { ok: true };
   };
-  findAll = async (model, query = {}) => {
-    const query_ = model.find(query);
-    return query_;
+  findAll = (model, query = {}) => {
+    return model.find(query);
   };
   findOne = async (model, query = {}) => {
     const query_ = model.findOne(query);

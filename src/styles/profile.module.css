@@ -49,3 +49,32 @@
   margin: 0 20px 0 20px;
   cursor: pointer;
 }
+.imgContainer {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.imgContainer > img {
+  width: 200px;
+  margin: 40px;
+  cursor: pointer;
+}
+.more {
+  width: 200px;
+  height: 40px;
+  display: block;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  margin: auto;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  background: #233142;
+  color: white;
+  font-weight: bolder;
+  margin-bottom: 40px;
+}

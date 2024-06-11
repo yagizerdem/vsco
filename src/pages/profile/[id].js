@@ -1,10 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "../../styles/profile.module.css";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]";
 import Database from "@/lib/Database";
 import User from "@/models/User";
 import { useRouter } from "next/router";
+import axios from "axios";
 export default function Profile({
   email,
   username,
@@ -14,6 +15,34 @@ export default function Profile({
   profileImage,
 }) {
   const router = useRouter();
+  const [allImages, setAllImages] = useState([]);
+  const [page, setPage] = useState(0);
+  const { id } = router.query;
+  const dynamicRoute = useRouter().asPath;
+
+  useEffect(() => {
+    async function helper() {
+      const queryParams = {
+        skip: page * 9,
+        limit: 9,
+        userid: id,
+      };
+
+      try {
+        const { data } = await axios.get("/api/getImages", {
+          params: queryParams,
+        });
+        const imageDataList = data?.data;
+        setAllImages((prev) => [...prev, ...imageDataList]);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    helper();
+  }, [page, id]);
+  useEffect(() => {
+    setAllImages([]);
+  }, [dynamicRoute]);
 
   return (
     <Fragment>
@@ -41,6 +70,17 @@ export default function Profile({
           </svg>
         </button>
       )}
+      <div className={styles.imgContainer}>
+        {allImages.map((data, i) => {
+          return <img src={data.base64} alt="image" key={i} />;
+        })}
+      </div>
+      <button
+        className={styles.more}
+        onClick={() => setPage((prev) => prev + 1)}
+      >
+        Load more
+      </button>
     </Fragment>
   );
 }
