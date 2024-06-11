@@ -9,6 +9,7 @@ class Database {
     this.insertUser = this.withErrorHandling(this.insertUser);
     this.findAll = this.withErrorHandling(this.findAll);
     this.findOne = this.withErrorHandling(this.findOne);
+    this.insert = this.withErrorHandling(this.insert);
   }
 
   withErrorHandling(fn) {
@@ -41,16 +42,20 @@ class Database {
     return { ok: true };
   };
   findAll = async (model, query = {}) => {
-    const documents = model.find(query);
-    return documents;
+    const query_ = model.find(query);
+    return query_;
   };
   findOne = async (model, query = {}) => {
-    const documents = model.findOne(query);
-    return documents;
+    const query_ = model.findOne(query);
+    return query_;
   };
   handleError = (error, functionName) => {
     console.error(`Error in function ${functionName}:`, error);
     return { ok: false };
+  };
+  insert = async (model, doc) => {
+    await doc.save();
+    return { ok: true };
   };
 }
 

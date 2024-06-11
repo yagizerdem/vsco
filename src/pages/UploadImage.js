@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 import styles from "../styles/uploadImage.module.css";
 import notify from "@/util/notify";
+import axios from "axios";
+import { useRouter } from "next/router";
 export default function UploadImage() {
   const inputRef = useRef();
   const formRef = useRef();
   const [base64, setBase64] = useState(null);
-
-  function submit(e) {
+  const router = useRouter();
+  async function submit(e) {
     e.preventDefault();
     if (!base64) {
       notify("image file must selected");
@@ -19,6 +21,14 @@ export default function UploadImage() {
       body[key] = value;
     }
     body.showComments = body.showComments ? true : false;
+    body.base64 = base64;
+    const { data } = await axios.post("/api/postImage", body);
+    if (!data.ok) {
+      notify(data.message);
+      return;
+    }
+    notify(data.message);
+    router.push("/");
   }
   function readImage(e) {
     const file = e.target.files[0];
