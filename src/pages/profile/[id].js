@@ -6,6 +6,8 @@ import Database from "@/lib/Database";
 import User from "@/models/User";
 import { useRouter } from "next/router";
 import axios from "axios";
+import notify from "@/util/notify";
+import HorizontalImageShow from "@/Components/HorizontalImageShow";
 export default function Profile({
   email,
   username,
@@ -19,7 +21,7 @@ export default function Profile({
   const [page, setPage] = useState(0);
   const { id } = router.query;
   const dynamicRoute = useRouter().asPath;
-
+  const [show, setShow] = useState();
   useEffect(() => {
     async function helper() {
       const queryParams = {
@@ -33,6 +35,10 @@ export default function Profile({
           params: queryParams,
         });
         const imageDataList = data?.data;
+        if (imageDataList.length == 0) {
+          notify("all images has loaded ...");
+          return;
+        }
         setAllImages((prev) => [...prev, ...imageDataList]);
       } catch (err) {
         console.log(err);
@@ -55,6 +61,7 @@ export default function Profile({
           ></img>
         )}
         <h2 className={styles.username}>{username}</h2>
+        <h3>{email}</h3>
         <div className={styles.followmetadata}>
           <span>following : {followingCount}</span>
           <span>follower : {followerCount}</span>
@@ -72,7 +79,14 @@ export default function Profile({
       )}
       <div className={styles.imgContainer}>
         {allImages.map((data, i) => {
-          return <img src={data.base64} alt="image" key={i} />;
+          return (
+            <img
+              src={data.base64}
+              alt="image"
+              key={i}
+              onClick={() => setShow(true)}
+            />
+          );
         })}
       </div>
       <button
@@ -81,6 +95,7 @@ export default function Profile({
       >
         Load more
       </button>
+      {show && <HorizontalImageShow setShow={setShow}></HorizontalImageShow>}
     </Fragment>
   );
 }
